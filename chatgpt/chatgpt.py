@@ -70,7 +70,9 @@ class ChatGPTOutput:
 
 class ChatGPT:
     def __init__(self, token: str, model_name: str = "gpt-3.5-turbo"):
+        # OpenAI-API token registration
         openai.api_key = token
+
         self.model = model_name
         self.message_history: list[ChatGPTMessage] = []
         self.output_history: list[ChatGPTOutput] = []
@@ -86,22 +88,26 @@ class ChatGPT:
         num_tokens = len(tokens)
         return num_tokens
 
-    def request(self, messages: list[ChatGPTMessage]):
+    def request(self, messages: list[ChatGPTMessage], save_history: bool = True) -> ChatGPTOutput:
         messages = [dataclasses.asdict(m) for m in messages]
         response = openai.ChatCompletion.create(
             model=self.model,
             messages=messages
         )
         response = ChatGPTOutput.from_json(response)
-        self.output_history.append(response)
+
+        if save_history:
+            self.output_history.append(response)
+
         return response
 
-    def chat(self, messages: list[ChatGPTMessage]) -> str:
+    def chat(self, messages: list[ChatGPTMessage], save_history: bool = True) -> str:
         response = self.request(messages)
         choice = response.choices[0]
         message = choice.message
         content = message.content
 
-        self.message_history += messages
-        self.message_history.append(message)
+        if save_history:
+            self.message_history += messages
+            self.message_history.append(message)
         return content
