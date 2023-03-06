@@ -24,10 +24,8 @@ The basic usage is as follows:
 
 ```python
 import os
-
 from rich import print
-
-from chatgpt import ChatGPT, ChatGPTRole
+from chatgpt import ChatGPT, ChatGPTRole, ChatGPTInput
 
 # Put your OpenAI API token here.
 TOKEN = os.environ["OPENAI_TOKEN"]
@@ -36,13 +34,31 @@ TOKEN = os.environ["OPENAI_TOKEN"]
 def main():
     chatgpt = ChatGPT(token=TOKEN)
 
-    messages = [
+    message = [
         chatgpt.create_message(content="You are a helpful assistant.", role=ChatGPTRole.system),
         chatgpt.create_message(content="Who won the world series in 2020?", role=ChatGPTRole.user),
     ]
-    reply = chatgpt.chat(messages)
+    inputs = ChatGPTInput(message)
+
+    # Get reply from ChatGPT
+    reply = chatgpt.chat(inputs)
     print(reply)
+
+    # View history of conversations with ChatGPT
+    print(chatgpt.message_history)
+
 
 if __name__ == '__main__':
     main()
 ```
+
+This code produces the following output:
+```text
+The Los Angeles Dodgers won the World Series in 2020.
+[
+    ChatGPTMessage(content='You are a helpful assistant.', role='system'),
+    ChatGPTMessage(content='Who won the world series in 2020?', role='user'),
+    ChatGPTMessage(content='The Los Angeles Dodgers won the World Series in 2020.', role='assistant')
+]
+```
+
