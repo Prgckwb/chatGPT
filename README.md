@@ -1,3 +1,10 @@
+<p align="center">
+    <br>
+    <img width="900" alt="chatgpt" src="https://user-images.githubusercontent.com/55102558/223039882-42740326-24d1-4dd2-bdc4-3c109f09a3d5.png">
+    <br>
+<p>
+
+
 # chatGPT
 Wrapper for openai package written in python, specialized for ChatGPT
 
