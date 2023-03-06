@@ -2,10 +2,13 @@
 Wrapper for openai package written in python, specialized for ChatGPT
 
 ## Installation
-
-
-
+First, install the dependent packages with this command.
+```bash
+pip install git+https://github.com/Prgckwb/chatGPT
 ```
+
+Or, clone this repository and install the package with the following command.
+```bash
 pip install -r requirements.txt
 ```
 
