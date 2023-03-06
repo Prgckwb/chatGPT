@@ -3,6 +3,8 @@ Wrapper for openai package written in python, specialized for ChatGPT
 
 ## Installation
 
+
+
 ```
 pip install -r requirements.txt
 ```

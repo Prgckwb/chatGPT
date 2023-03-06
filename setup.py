@@ -1,18 +1,26 @@
-from setuptools import setup, find_packages
+import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setup(
-    name='chatgpt',  # パッケージ名（pip listで表示される）
-    version="0.0.1",  # バージョン
-    description="sample of minimum package",  # 説明
-    author='prgckwb',  # 作者名
-    packages=find_packages(),  # 使うモジュール一覧を指定する
-    license='MIT',  # ライセンス
+setuptools.setup(
+    name="chatgpt",
+    version="0.1.0",
+    author="prgckwb",
+    description="Wrapper for openai package written in python, specialized for ChatGPT",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/Prgckwb/chatGPT",
+    packages=setuptools.find_packages(),
     install_requires=[
         'openai',
         'tiktoken',
         'rich'
-    ]
+    ],
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.10',
 )
