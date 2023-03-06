@@ -5,8 +5,7 @@ from chatgpt import ChatGPT, ChatGPTRole, ChatGPTInput
 # Put your OpenAI API token here.
 TOKEN = os.environ["OPENAI_TOKEN"]
 
-
-def main():
+def sample():
     chatgpt = ChatGPT(token=TOKEN)
 
     message = [
@@ -21,6 +20,13 @@ def main():
 
     # View history of conversations with ChatGPT
     print(chatgpt.message_history)
+
+def main():
+    chatgpt = ChatGPT(token=TOKEN)
+
+    text = "私はAIを利用したチャットボットを作りたい。"
+    tokenized_text = chatgpt.check_tokenized_text(text)
+    print(tokenized_text)
 
 
 if __name__ == '__main__':

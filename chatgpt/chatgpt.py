@@ -126,6 +126,8 @@ class ChatGPT:
         openai.api_key = token
 
         self.model = model_name
+        self.encoder = tiktoken.encoding_for_model(self.model)
+
         self.message_history: list[ChatGPTMessage] = []
         self.output_history: list[ChatGPTOutput] = []
 
@@ -155,10 +157,20 @@ class ChatGPT:
 
         """
 
-        encoding = tiktoken.encoding_for_model(self.model)
-        tokens = encoding.encode(sentence)
+        tokens = self.encoder.encode(sentence)
         num_tokens = len(tokens)
         return num_tokens
+
+    def check_tokenized_text(self, sentence: str):
+        tokens = self.encoder.encode(sentence)
+        text = ""
+        for i in tokens:
+            c = self.encoder.decode([i])
+            if len(c) == 1 and ord(c) == 65533:
+                text += f"{i}|"
+            else:
+                text += f"{c}|"
+        return text
 
     def request(self,
                 inputs: ChatGPTInput,
