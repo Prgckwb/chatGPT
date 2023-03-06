@@ -1,5 +1,11 @@
 # chatGPT
 
+## Prepare
+
+```
+pip install -r requirements.txt
+```
+
 ## Usage
 
 ```python
