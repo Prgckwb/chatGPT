@@ -79,16 +79,36 @@ class ChatGPT:
 
     @staticmethod
     def create_message(content: str, role: str = ChatGPTRole.user) -> ChatGPTMessage:
+        """Create a chat history to be used for ChatGPT.
+
+        :param content: Chat content, sentence.
+        :param role: Argument to determine who is speaking, selected from `ChatGPTRole`.
+        :return:
+        """
+
         message = ChatGPTMessage(role, content)
         return message
 
-    def count_token(self, sentence: str):
+    def count_token(self, sentence: str) -> int:
+        """Calculate the number of tokens used in the ChatGPT
+
+        :param sentence: Sentence for which you want to calculate tokens.
+        :return: Number of tokens.
+        """
+
         encoding = tiktoken.encoding_for_model(self.model)
         tokens = encoding.encode(sentence)
         num_tokens = len(tokens)
         return num_tokens
 
     def request(self, messages: list[ChatGPTMessage], save_history: bool = True) -> ChatGPTOutput:
+        """Get data when querying ChatGPT's API.
+
+        :param messages:
+        :param save_history:
+        :return:
+        """
+
         messages = [dataclasses.asdict(m) for m in messages]
         response = openai.ChatCompletion.create(
             model=self.model,
@@ -102,6 +122,12 @@ class ChatGPT:
         return response
 
     def chat(self, messages: list[ChatGPTMessage], save_history: bool = True) -> str:
+        """Only the sentences returned when querying ChatGPT's API are retrieved.
+
+        :param messages:
+        :param save_history:
+        :return:
+        """
         response = self.request(messages)
         choice = response.choices[0]
         message = choice.message

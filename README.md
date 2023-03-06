@@ -1,12 +1,14 @@
 # chatGPT
+Wrapper for openai package written in python, specialized for ChatGPT
 
-## Prepare
+## Installation
 
 ```
 pip install -r requirements.txt
 ```
 
 ## Usage
+The basic usage is as follows:
 
 ```python
 import os
@@ -23,8 +25,8 @@ def main():
     chatgpt = ChatGPT(token=TOKEN)
 
     messages = [
-        chatgpt.create_message(content="日本語で答えてください", role=ChatGPTRole.system),
-        chatgpt.create_message(content="AIとはなんですか?", role=ChatGPTRole.user),
+        chatgpt.create_message(content="You are a helpful assistant.", role=ChatGPTRole.system),
+        chatgpt.create_message(content="Who won the world series in 2020?", role=ChatGPTRole.user),
     ]
     reply = chatgpt.chat(messages)
     print(reply)
