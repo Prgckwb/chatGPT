@@ -5,6 +5,8 @@ from .input import ChatGPTMessage, ChatGPTRole, ChatGPTInput
 from .output import ChatGPTOutput
 
 
+
+
 class ChatGPT:
     def __init__(self, token: str, model_name: str = "gpt-3.5-turbo"):
         # OpenAI-API token registration
@@ -15,21 +17,6 @@ class ChatGPT:
 
         self.message_history: list[ChatGPTMessage] = []
         self.output_history: list[ChatGPTOutput] = []
-
-    @staticmethod
-    def create_message(content: str, role: str = ChatGPTRole.user) -> ChatGPTMessage:
-        """Create a chat history to be used for ChatGPT.
-
-        Args:
-            content: Chat content, sentence.
-            role: Argument to determine who is speaking, selected from `ChatGPTRole`.
-
-        Returns:
-
-        """
-
-        message = ChatGPTMessage(content=content, role=role)
-        return message
 
     def count_token(self, sentence: str) -> int:
         """Calculate the number of tokens used in the ChatGPT
