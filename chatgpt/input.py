@@ -10,7 +10,7 @@ class ChatGPTRole:
 @dataclasses.dataclass
 class ChatGPTMessage:
     content: str
-    role: ChatGPTRole
+    role: str
 
     @classmethod
     def from_json(cls, json_data):
@@ -39,7 +39,25 @@ class ChatGPTInput:
         if isinstance(self.messages, ChatGPTMessage):
             self.messages = [self.messages]
 
+    @classmethod
+    def create(cls,
+               text: str | list[str],
+               role: str | list[str] = ChatGPTRole.user):
+        if isinstance(text, str):
+            text = [text]
+        if isinstance(role, str):
+            role = [role]
 
+        print(f"{text=}")
+        print(f"{type(role)=}")
+        assert len(text) == len(role)
+
+        messages = []
+        for t, r in zip(text, role):
+            msg = ChatGPTMessage(content=t, role=r)
+            messages.append(msg)
+
+        return cls(messages=messages)
 
     def to_json_inputs(self):
         args = dict()
