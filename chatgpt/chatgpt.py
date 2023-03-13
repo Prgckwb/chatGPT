@@ -65,10 +65,12 @@ class ChatGPT:
         self.message_history.append(message)
         self.output_history.append(output)
 
-    def request_by_inputs(self,
-                          inputs: ChatGPTInput,
-                          continue_chat: bool = True,
-                          save_history: bool = True) -> ChatGPTOutput:
+    def request_by_inputs(
+            self,
+            inputs: ChatGPTInput,
+            continue_chat: bool = True,
+            save_history: bool = True
+    ) -> ChatGPTOutput:
         """Get data when querying ChatGPT's API.
 
         Args:
@@ -109,10 +111,12 @@ class ChatGPT:
 
         return response
 
-    def chat_by_inputs(self,
-                       inputs: ChatGPTInput,
-                       continue_chat: bool = True,
-                       save_history: bool = True) -> str:
+    def chat_by_inputs(
+            self,
+            inputs: ChatGPTInput,
+            continue_chat: bool = True,
+            save_history: bool = True
+    ) -> str:
         """
 
         Args:
@@ -137,7 +141,12 @@ class ChatGPT:
         self.message_history = []
         self.output_history = []
 
-    def request(self, text: str | list, continue_chat: bool = True, save_history: bool = True) -> ChatGPTOutput:
+    def request(
+            self,
+            text: str | list,
+            continue_chat: bool = True,
+            save_history: bool = True
+    ) -> ChatGPTOutput:
         if isinstance(text, str):
             text = [text]
 
@@ -151,7 +160,12 @@ class ChatGPT:
         )
         return response
 
-    def chat(self, text: str | list[str], continue_chat: bool = True, save_history: bool = True):
+    def chat(
+            self,
+            text: str | list[str],
+            continue_chat: bool = True,
+            save_history: bool = True
+    ) -> str:
         if isinstance(text, str):
             text = [text]
 

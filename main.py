@@ -13,7 +13,9 @@ def main():
 
     # Get reply from ChatGPT
     reply = chatgpt.chat("What is the highest mountain in the world?")
-    print(reply)
+    reply2 = chatgpt.chat("日本語で答えてください")
+
+    print(chatgpt.message_history)
 
 
 if __name__ == '__main__':
